@@ -1,5 +1,6 @@
 from tkinter import *
 
+
 class Gui_txt2():
     x = None
     txt = None
@@ -16,10 +17,8 @@ class Gui_txt2():
         self.window.mainloop()
 
     def clicked(self, ):
-        self.x = self.txt.get()
-        self.window.destroy()
+        if self.txt.get():
+            self.x = self.txt.get()
+            self.window.destroy()
 
 
-
-password = Gui_txt2("输入密码")
-password = password.x
