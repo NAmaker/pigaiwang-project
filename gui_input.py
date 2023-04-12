@@ -1,6 +1,7 @@
 from tkinter import *
 
-class Gui_input():
+
+class Gui_input:
     x = None
     txt = None
 
@@ -11,7 +12,8 @@ class Gui_input():
         self.window.geometry("780x600")
         txt = Text(self.window, width=100)
         txt.grid(column=1, row=0)
-        self.txt = txt
+        self.txt=txt
+
         btn = Button(self.window, text="点击确定", command=self.clicked,bg='red')
         btn.grid(column=4, row=4)
         self.window.mainloop()
@@ -19,3 +21,5 @@ class Gui_input():
     def clicked(self, ):
         self.x = self.txt.get('0.0','end')
         self.window.destroy()
+
+
