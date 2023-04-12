@@ -21,9 +21,9 @@ class Gui_trans():
 
     def clicked1(self, ):
         self.x = 1
+        self.window.destroy()
 
     def clicked2(self, ):
         self.x = 2
+        self.window.destroy()
 
-# trans = Gui_trans("你输入是作文是英文还是中文？1是英文，2是中文")
-# trans=trans.x
