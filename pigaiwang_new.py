@@ -2,18 +2,20 @@ import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from Pigaiwang.gui_input import Gui_input
-from Pigaiwang.gui_txt import name
-from Pigaiwang.gui_txt2 import password
-from Pigaiwang.Have_not import have1_or_not2
-from Pigaiwang.Gui_choice import which
-from Pigaiwang.Gui_choice2 import wh
+from Pigaiwang.gui_txt import Gui_txt
+from Pigaiwang.gui_txt2 import Gui_txt2
+from Pigaiwang.Have_not import Have_not
+from Pigaiwang.Gui_choice import Gui_choice
+from Pigaiwang.Gui_choice2 import Gui_choice2
 from Pigaiwang.Gui_trans import Gui_trans
+from tkinter import *
+from tkinter import messagebox
 
 
 class Act(object):
 
     def __init__(self, web):
-        bro = webdriver.Chrome(executable_path=r"../chromedriver.exe")
+        bro = webdriver.Chrome(executable_path=r"chromedriver.exe")
         self.bro = bro
         self.bro.get(web)  # 可以更换
         self.bro.maximize_window()
@@ -127,7 +129,7 @@ def choice(wh):
         else:
             pass
     elif wh == 1:
-        article = "Energetic youth is not simple to perish. Mistakes cannot stand failure, but reality is not afraid of failure. As long as there is a breath left, one should not give up hope. One's death is either heavier than Mount Tai or lighter than a feather. Laughter is sunshine, it can eliminate the winter color of people's faces.Whoever loses patience loses his soul. The closer you get to the truth, the more fascinated you will find the truth. I can't choose the best. The spring of the river has existed for thousands of years, and youth is gone forever. The famous saying of blood is willing to share weather and woe with the people and pledge to fight for blood to solidify the divine land. The most terrible enemy is that he has no strong faith. Many people pay for their success with the happiness of their youth. For indomitable people, there is no such thing as failure. I can only offer my blood, sweat and tears. The golden age is in front of us, not behind us. If we have accepted the worst, there will be no loss. As long as we can make good use of time, we will never worry about time shortage. If you want to monopolize the truth, the truth will laugh at you.We love our nation, which is the source of our self-confidence. Many people take the happiness of youth as the price of success. For those who are afraid of danger, the world is always dangerous. A failure only proves that our determination to succeed is strong enough. For a beautiful hope, we suffered so much, shed tears and shed blood. Where can I buy youth?Achieving great things does not depend on strength, but on strength."
+        article = "Environmental protection refers to the preservation, conservation, and restoration of natural resources and ecosystems. It involves taking proactive measures to safeguard the environment from human activities that can cause damage, pollution, or destruction. The importance of environmental protection cannot be overstated as it is essential for sustaining life on Earth and ensuring a healthy and livable planet for future generations.One major argument for environmental protection is the crucial role it plays in ensuring human health and well-being. The quality of the air we breathe, the water we drink, and the food we consume are all directly linked to the state of our environment. Polluted air and water can cause a range of health problems, from respiratory illnesses to cancer. Pesticides and other harmful chemicals used in agriculture can contaminate our food supply and lead to serious health issues. By protecting the environment, we can minimize exposure to harmful substances and create a healthier and safer living environment for ourselves and future generations.Another argument for environmental protection is the need to preserve biodiversity and natural resources. The Earth's ecosystems provide essential services such as clean air, clean water, and fertile soil that support life on our planet. These resources are finite and must be carefully managed and conserved to ensure their availability for future generations. Protecting biodiversity and natural resources also has economic benefits, as they provide essential resources for industries such as tourism, agriculture, and fishing. By protecting the environment, we can ensure the sustainability of these industries and their ability to provide for our needs in the long term.In conclusion, environmental protection is vital for the health and well-being of humans and the sustainability of our planet's natural resources. It is essential that we take proactive measures to conserve and protect our environment and ensure that it remains healthy and vibrant for future generations. By working together to protect the environment, we can create a brighter and more sustainable future for all."
     elif wh == 2:
         article = "I spent my childhood in a small village. It is a beautiful village, far away from the noise of the city, with a sense of loneliness that belongs here alone. In spring in the countryside, I can hear all kinds of voices. The rugged snow leopard, the plaintive lynx, and the happy rock sheep. The cries of these animal friends bring me unparalleled happiness. In summer, cicadas kept talking, and we played many games on the grass. Following the rhythm of our partners, we whirled and jumped, feeling the emotion of the wind with our eyes closed. How happy! In autumn and winter, though the land withered, it lost its vitality. But everything is quiet, which has a special flavor. We can roll freely in the snow, dance our youth and sweat. How can we say that we are unhappy? There is an image ambassador in my hometown. His name is Pearl Ding Zhen. He is our idol, as dazzling as Gu Ailing. I'm proud that there are such people in my hometown. This is my unique childhood experience. This childhood experience has brought me spiritual wealth throughout my life. Therefore, my soul has a destination. The smell of hometown may be hidden in the sound of animal friends! "
     elif wh == 3:
@@ -139,8 +141,76 @@ def choice(wh):
     return article
 
 
-if __name__ == '__main__':
+def exit():
+    root = Tk()
+    root.withdraw()
+    messagebox.showinfo('退出')
+
+
+def assaert():
+    name1 = Gui_txt("输入你的账号")
+    name = name1.x
+    assert name is not None, "result1 is None!"
+
+    password1 = Gui_txt2("输入密码")
+    password = password1.x
+    assert password is not None, "result2 is None!"
+
+    have1_or_not21 = Have_not()
+    have1_or_not2 = have1_or_not21.x
+    assert have1_or_not2 is not None, "result3 is None!"
+
+    which1 = Gui_choice()
+    which = which1.x
+    assert which is not None, "result4 is None!"
+
+    wh1 = Gui_choice2()
+    wh = wh1.x
+    assert wh is not None, "result5 is None!"
+
     article = choice(wh)
     new = Xpath("http://www.pigai.org/index.php")
-    new.action(have1_or_not2=have1_or_not2, which=which, name=name, password=password, article=article)
-    time.sleep(4)
+    new.action(have1_or_not2=have1_or_not2, which=which, name=name, password=password,
+               article=article)
+
+
+def get_in():
+    name1 = Gui_txt("输入你的账号")
+    name = name1.x
+    if name:
+        password1 = Gui_txt2("输入密码")
+        password = password1.x
+        if password:
+            have1_or_not21 = Have_not()
+            have1_or_not2 = have1_or_not21.x
+            if have1_or_not2:
+                which1 = Gui_choice()
+                which = which1.x
+                if which:
+                    wh1 = Gui_choice2()
+                    wh = wh1.x
+                    if wh:
+                        article = choice(wh)
+                        new = Xpath("http://www.pigai.org/index.php")
+                        new.action(have1_or_not2=have1_or_not2, which=which, name=name, password=password,
+                                   article=article)
+                    else:
+                        exit()
+
+                else:
+                    exit()
+
+            else:
+                exit()
+        else:
+            exit()
+
+    else:
+        exit()
+
+
+if __name__ == '__main__':
+    assaert()
+
+
+
