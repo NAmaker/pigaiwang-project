@@ -1,9 +1,12 @@
 from tkinter import *
+from tkinter import messagebox
+
 
 class Gui_txt:
 
     x = None
     txt = None
+
     def __init__(self, titl):
         window = Tk()
         self.window = window
@@ -16,12 +19,10 @@ class Gui_txt:
         btn.grid(column=4, row=4)
         self.window.mainloop()
 
-
     def clicked(self,):
-        self.x = self.txt.get()
-        self.window.destroy()
+        if self.txt.get():
+            self.x = self.txt.get()
+            self.window.destroy()
 
 
-name = Gui_txt("输入你的账号")
-name = name.x
 
